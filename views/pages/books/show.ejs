@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <%- include('../../partials/header') %>
+    <section>
+        <% detailBook.forEach(book=>{%>
+        <img src="<%= book.img%>" alt="cover">
+        <h3> <%= book.title %> </h3>
+        <h4> <%= book.author %> </h4>
+        <p> <%= book.description %> </p>
+        <h4> <%= book.isbn %> </h4>
+        <h4> <%= book.bookshelf%> </h4>
+        <button id = "showform">Update Details</button>
+        <form action="/books/<%= book.id %>?_method=delete" method="POST">
+            <button type="submit">Delete Book</button>
+        </form>
+        
+        <form id="updateDataForm" action="/books/<%=book.id%>?_method=put" method="POST">
+            <input name='title' type="text" value="<%= book.title %>">
+            <input name='author' type="text" value="<%= book.author %>">
+            <input name='isbn' type="text" value="<%= book.isbn %>">
+            <input name='img' type="text" value="<%= book.img %>">
+            <input name='description' value="<%= book.description %>">
+            <select name="bookshelf">
+                <option value="<%=book.bookshelf%>"><%=book.bookshelf%></option>
+            </select>
+            <button type="submit">Update Book</button>
+        </form>
+        <%})%>
+    </section>
+    <%- include('../../partials/footer') %>
+</body>
+</html>
+

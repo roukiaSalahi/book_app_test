@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <%- include('../partials/head') %>
+    </head>
+
+<body>
+    <%- include('../partials/header') %>
+    <h2><%= finalResult.length %> Saved Books </h2>
+
+    <section class = "containerFlex">
+       
+        <% finalResult.forEach(book=>{ %>
+            <div>
+                <img src="<%= book.img %>" alt="cover">
+                <h3> <%= book.title %></h3>
+                <h4> <%= book.author %></h4>
+                <form action="/books/<%= book.id %>" method="GET">
+                    <button type="submit">View Details</button>
+                </form>
+            </div>
+       
+    
+        <%})%>
+    </section>
+
+    
+    <%- include('../partials/footer') %>
+</body>
+</html>
